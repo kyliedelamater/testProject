@@ -2,11 +2,11 @@ package api;
 
 public interface DataStorageSystem {
 
-	ReadInputResponse readInput(ReadInputRequest rInputRequest);
+	ReadInputResponse readInput(ReadInputRequest readInputRequest);
 	
-	WriteInputResponse writeInput(WriteInputRequest wInputRequest);
+	WriteInputResponse writeInput(WriteInputRequest writeInputRequest);
 	
-	ReadOutputResponse readOutput(ReadOutputRequest rOutputRequest);
+	ReadOutputResponse readOutput(ReadOutputRequest readOutputRequest);
 	
-	WriteOutputResponse writeOutput(WriteOutputRequest wOutputRequest);
+	WriteOutputResponse writeOutput(WriteOutputRequest writeOutputRequest);
 }
