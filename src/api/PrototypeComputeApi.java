@@ -1,10 +1,10 @@
 package api;
 
-import interfaces.UserRequest;
+import interfaces.ComputeRequest;
 
 public class PrototypeComputeApi {
 
-  public void computeRequest(UserRequest userRequest) {
+  public void computeRequest(ComputeRequest computeRequest) {
 
   }
 }
