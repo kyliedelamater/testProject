@@ -1,5 +1,5 @@
 package api;
 
-public class WriteOutputRequest implements WriteOutputResponse {
+public class WriteOutputRequest {
 
 }
