@@ -2,4 +2,4 @@
 
 ### API Diagram:
 
-![](src\assets\API_Diagram.PNG)
+![](https://github.com/EDOLK/CPS353-Project/src/assets/API_Diagram.PNG?raw=true)
