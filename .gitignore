@@ -9,3 +9,6 @@ build
 .settings
 .project
 bin
+
+# Ignore ide-related files
+.idea
