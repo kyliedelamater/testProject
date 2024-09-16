@@ -1,5 +1,5 @@
 package api;
 
-public class ReadInputRequest implements ReadInputResponse {
+public class ReadInputRequest {
 
 }
