@@ -1,12 +1,12 @@
 package api;
 
-import interfaces.ComputeEngine;
+import interfaces.ComputeEngineComputation;
 import interfaces.ComputeRequestHandler;
 import interfaces.NumStream;
 
 public class PrototypeComputeApi {
 
-  public void prototypeComputeRequest(ComputeRequestHandler computeRequestHandler, ComputeEngine computeEngine) {
+  public void prototypeComputeRequest(ComputeRequestHandler computeRequestHandler, ComputeEngineComputation computeEngine) {
     // Get the ints to calculate factorials for, from user request
     NumStream computeEngineInput = computeRequestHandler.getIntegersForFactorial();
 

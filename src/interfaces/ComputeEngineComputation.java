@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface ComputeEngine {
+public interface ComputeEngineComputation {
   NumStream doFactorial(NumStream numStream);
 }
