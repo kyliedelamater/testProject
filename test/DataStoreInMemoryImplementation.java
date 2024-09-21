@@ -17,8 +17,6 @@ public class DataStoreInMemoryImplementation {
 				String outputData = "Output = " + input2.get(i);
 				output.writeOutput(outputData);
 			}
-			return;
 		}
 
-	}
 }
