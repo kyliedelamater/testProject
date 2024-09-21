@@ -1,4 +1,4 @@
-package Testing.datastoreapi;
+package datastoreapitests;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
