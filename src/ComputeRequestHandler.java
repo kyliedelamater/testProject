@@ -6,4 +6,6 @@ public interface ComputeRequestHandler {
   ResponseCode generateAndSendResponseMessage(NumStream computeResults);
 
   <T> ComputeRequestHandler computeRequestHandler(T userRequest);
+
+  <T> void setDataApi(T dataStorageApi);
 }
