@@ -3,7 +3,7 @@ import interfaces.ComputeEngineComputation;
 public class ComputeEngineImplementation {
   ComputeEngineComputation computeEngineComputation;
 
-  EngineResponse computeInput(ComputeRequestHandler ComputeRequestHandler) {
+  EngineResponse computeInput(ComputeRequestHandler computeRequestHandler) {
     return null;
   }
 
