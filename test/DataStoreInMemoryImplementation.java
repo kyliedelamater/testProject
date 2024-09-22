@@ -6,8 +6,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class DataStoreInMemoryImplementation {
-	private Input input;
-	private Output output;
+	private InputRequest input;
+	private OutputRequest output;
 		
 		@Test
 		public void readAndWriteData() {
