@@ -16,7 +16,7 @@ public class DataStoreInMemoryImplementation {
 		OutputInMemoryImplementation output = new OutputInMemoryImplementation(outputList);
 		
 		int i = inputList.size();
-		while(inputList.isEmpty() == false) {
+		while(!inputList.isEmpty()) {
 			input.readInput();
 			inputList.remove(i);
 			i--;
