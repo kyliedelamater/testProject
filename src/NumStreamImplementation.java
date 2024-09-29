@@ -3,13 +3,15 @@ import interfaces.NumStream;
 import java.util.ArrayList;
 
 public class NumStreamImplementation implements NumStream {
-  public ArrayList<Integer> numStream;
+  public ArrayList<Integer> integerList;
 
-  public ArrayList<Integer> getNumStream() {
-    return numStream;
+  @Override
+  public Object getIntegers() {
+    return integerList;
   }
 
-  public void setNumStream(ArrayList<Integer> numStream) {
-    this.numStream = numStream;
+  @Override
+  public void setIntegerList(Object integerList) {
+    this.integerList = (ArrayList<Integer>) integerList;
   }
 }

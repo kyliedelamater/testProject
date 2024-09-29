@@ -3,12 +3,18 @@ import interfaces.NumStream;
 
 import java.util.ArrayList;
 
-public class ComputationImplementation {
-  public NumStreamImplementation doFactorial(NumStreamImplementation numStream) {
-    NumStreamImplementation answerStream = new NumStreamImplementation();
+public class ComputationImplementation implements ComputeEngineComputation {
+  @Override
+  public NumStream doFactorial(NumStream numStream) {
+    NumStream answerStream = new NumStreamImplementation();
     ArrayList<Integer> resultList = new ArrayList<>();
 
-    for (Integer inputNum : numStream.getNumStream()) {
+    answerStream.setIntegerList(resultList);
+    return answerStream;
+  }
+
+  public void factorialLoop(ArrayList<Integer> inputList, ArrayList<Integer> resultList) {
+    for (Integer inputNum : inputList) {
       int result = 1;
       for (int interval = inputNum; interval > 0; interval--) {
         result = result * interval;
@@ -16,9 +22,5 @@ public class ComputationImplementation {
 
       resultList.add(result);
     }
-
-    answerStream.setNumStream(resultList);
-
-    return answerStream;
   }
 }
