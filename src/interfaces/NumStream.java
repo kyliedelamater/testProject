@@ -1,7 +1,7 @@
 package interfaces;
 
 public interface NumStream {
-  Object getIntegers();
+  List<Integer> getIntegers();
 
   void setIntegerList(Object integerList);
 }
