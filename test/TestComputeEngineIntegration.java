@@ -4,13 +4,16 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static org.mockito.Mockito.mock;
+
 public class TestComputeEngineIntegration {
 
   @Test
   public void testComputeEngineIntegration() {
     List<Integer> numStream = List.of(1,10,25);
+    ComputeEngineComputation computeEngineComputation = mock(ComputeEngineComputation);
 
-    ComputeEngineComputation computeEngineComputation = new ComputeEngineComputation();
+    ComputeEngineComputation computeEngineComputation = new ComputeEngineImplementation();
     // This will become a DatastoreApi object upon merging
     Object dataStoreApi = null;
     UserRequest userRequest = new UserRequest((UserRequestSource) numStream, new UserRequestDestination());

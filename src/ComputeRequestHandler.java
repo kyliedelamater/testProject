@@ -1,6 +1,8 @@
 import interfaces.NumStream;
 
 public interface ComputeRequestHandler {
+  void setNumstream(NumStream numStream);
+
   NumStream getIntegersForFactorial();
 
   ResponseCode generateAndSendResponseMessage(NumStream computeResults);

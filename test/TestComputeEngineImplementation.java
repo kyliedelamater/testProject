@@ -15,11 +15,11 @@ public class TestComputeEngineImplementation {
     ComputeEngineComputation mockComputeEngineComputation = mock(ComputeEngineComputation.class);
     ComputeRequestHandler mockComputeRequestHandler = mock(ComputeRequestHandler.class);
 
-    ComputeEngineImplementation computeEngineImplementation = new ComputeEngineImplementation(mockComputeEngineComputation, mockComputeRequestHandler);
+    ComputeEngineImplementation computeEngineImplementation = new ComputeEngineImplementation(mockComputeEngineComputation);
 
     when(mockComputeRequestHandler.generateAndSendResponseMessage(any())).thenReturn(ResponseCode.SUCCESSFUL);
 
-    EngineResponse engineResponse = computeEngineImplementation.computeInput(new UserRequest(null, null));
+    EngineResponse engineResponse = computeEngineImplementation.computeInput(mockComputeRequestHandler);
 
     assertEquals(engineResponse, 1);
   }
