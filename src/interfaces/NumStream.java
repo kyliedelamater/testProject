@@ -1,7 +1,9 @@
 package interfaces;
 
-public interface NumStream {
-  Object getIntegers();
+import java.util.List;
 
-  void setIntegerList(Object integerList);
+public interface NumStream {
+  List<Integer> getIntegers();
+
+  void setIntegerList(List<Integer> integerList);
 }

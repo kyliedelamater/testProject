@@ -1,24 +1,23 @@
 import interfaces.NumStream;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NumStreamImplementation implements NumStream {
-  public ArrayList<Integer> integerList;
+  public List<Integer> integerList;
 
   public NumStreamImplementation() {
   }
 
-  public NumStreamImplementation(ArrayList<Integer> integerList) {
+  public NumStreamImplementation(List<Integer> integerList) {
     this.integerList = integerList;
   }
 
-  @Override
-  public Object getIntegers() {
+  public List<Integer> getIntegers() {
     return integerList;
   }
 
-  @Override
-  public void setIntegerList(Object integerList) {
-    this.integerList = (ArrayList<Integer>) integerList;
+  public void setIntegerList(List<Integer> integerList) {
+    this.integerList =  integerList;
   }
 }
