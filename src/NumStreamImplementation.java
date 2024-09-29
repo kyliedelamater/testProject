@@ -13,12 +13,10 @@ public class NumStreamImplementation implements NumStream {
     this.integerList = integerList;
   }
 
-  @Override
   public Object getIntegers() {
     return integerList;
   }
 
-  @Override
   public void setIntegerList(List<Integer> integerList) {
     this.integerList =  integerList;
   }
