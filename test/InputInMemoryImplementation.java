@@ -1,14 +1,17 @@
-package datastoreapi;
+package datastoreapitests;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class InputInMemoryImplementation {
 
-  List<Integer> inputConfig = new ArrayList<>();
+	private List<Integer> inputConfig;
 
-	public List<Integer> getInput() {
-		return inputConfig;
+	public InputInMemoryImplementation(List<Integer> inputConfig){
+		this.inputConfig = inputConfig;
+
 	}
 
+	public List<Integer> readInput() {
+		return inputConfig;
+	}
 }
