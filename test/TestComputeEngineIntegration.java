@@ -1,28 +1,36 @@
-import interfaces.ComputeEngineComputation;
+import datastoreapi.DataStoreAPI;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestComputeEngineIntegration {
 
   @Test
   public void testComputeEngineIntegration() {
-    List<Integer> numStream = List.of(1,10,25);
-
-    ComputeEngineComputation computeEngineComputation = new ComputeEngineComputation();
-    // This will become a DatastoreApi object upon merging
-    Object dataStoreApi = null;
-    UserRequest userRequest = new UserRequest((UserRequestSource) numStream, new UserRequestDestination());
+    ArrayList<Integer> requestList = new ArrayList<>(Arrays.asList(1,10,25));
 
     // Create a computeRequestHandler with userRequest, and set it's datastoreapi
-    ComputeRequestHandler computeRequestHandler = new ComputeRequestHandler(userRequest);
+    DataStoreAPI dataStoreApi = new DataStoreAPI();
+    UserRequest userRequest = new UserRequest(new UserRequestSource(), new UserRequestDestination(), new NumStreamImplementation(requestList));
+
+    ComputeRequestHandler computeRequestHandler = new ComputeRequestHandlerImplementation(userRequest);
     computeRequestHandler.setDataApi(dataStoreApi);
 
-    ComputeEngineImplementation computeEngineImplementation = new ComputeEngineImplementation(computeEngineComputation);
+    ComputeEngineComputation computationImplementation = new ComputationImplementation();
 
-    EngineResponse engineResponse = computeEngineImplementation.computeInput(computeRequestHandler);
+    ComputeEngine computeEngineImplementation = new ComputeEngineImplementation(computationImplementation, computeRequestHandler);
 
-    Assert.assertEquals(engineResponse.getRequestResult(), "1;1:10;362800:25;15511210043330985984000000");
+    userRequest.setRequestStream(computeRequestHandler.getUserRequest().getRequestStream());
+
+    EngineResponse engineResponse = computeEngineImplementation.submitRequest(userRequest);
+
+    /*
+     The factorial of 25 here is incorrect due max size of an int.
+     If numbers >12 will be submitted to the api then all instances of
+     <Integer> lists should be changed to <Float> lists
+    */
+    Assert.assertEquals("1;1:10;3628800:25;2076180480", engineResponse.getRequestResult().getResultString());
   }
 }

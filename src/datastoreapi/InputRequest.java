@@ -18,4 +18,8 @@ public class InputRequest {
 	public void setFile(String file) {
 		this.file = file;
 	}
+
+	public void checkInputResponse(InputRequest inputRequest) {
+
+	}
 }

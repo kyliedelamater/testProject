@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import datastoreapi.ComputeEngineAPI;
 import datastoreapi.DataStoreAPI;
@@ -16,6 +15,7 @@ import datastoreapi.InputRequest;
 import datastoreapi.InputResponse;
 import datastoreapi.OutputRequest;
 import datastoreapi.OutputResponse;
+import org.mockito.Mockito;
 
 public class TestDataStorage {
 
@@ -23,7 +23,7 @@ public class TestDataStorage {
 	@Test
 	public void testInputRequest() {
 		InputRequest inputRequest = new InputRequest();
-		checkInputResponse(inputRequest);
+		inputRequest.checkInputResponse(inputRequest);
 	}
 
 	// TODO
@@ -35,6 +35,7 @@ public class TestDataStorage {
 	@Test
 	public void testOutputRequest() {
 		OutputRequest outputRequest = new OutputRequest();
+
 		checkOutputResponse(outputRequest);
 
 	}

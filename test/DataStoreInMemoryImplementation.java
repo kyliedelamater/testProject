@@ -2,6 +2,7 @@ package datastoreapitests;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +13,8 @@ public class DataStoreInMemoryImplementation {
 		List<Integer> inputList = new ArrayList<>();
 		List<String> outputList = new ArrayList<>();
 		
-		InputInMemoryImplementation input = new InputInMemoryImplementation(inputList);
-		OutputInMemoryImplementation output = new OutputInMemoryImplementation(outputList);
+		datastoreapitests.InputInMemoryImplementation input = new datastoreapitests.InputInMemoryImplementation(inputList);
+		datastoreapitests.OutputInMemoryImplementation output = new datastoreapitests.OutputInMemoryImplementation(outputList);
 		
 		int i = inputList.size();
 		while(!inputList.isEmpty()) {

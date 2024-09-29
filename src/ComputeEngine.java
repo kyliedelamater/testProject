@@ -1,6 +1,8 @@
+import interfaces.NumStream;
 
 public interface ComputeEngine {
 
-	EngineResponse submit(UserRequest userRequest);
+	EngineResponse submitRequest(UserRequest userRequest);
 
+	EngineResponse sendStreamForFactorial(NumStream numStream);
 }

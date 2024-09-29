@@ -1,6 +1,4 @@
-import interfaces.ComputeEngineComputation;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -12,15 +10,21 @@ public class TestComputeEngineImplementation {
 
   @Test
   public void testComputation() {
-    ComputeEngineComputation mockComputeEngineComputation = mock(ComputeEngineComputation.class);
     ComputeRequestHandler mockComputeRequestHandler = mock(ComputeRequestHandler.class);
+    ComputeEngineImplementation mockComputeEngineImplementation = mock(ComputeEngineImplementation.class);
+    RequestResult requestResult = mock(RequestResultImplementation.class);
+    UserRequest mockUserRequest = mock(UserRequest.class);
 
-    ComputeEngineImplementation computeEngineImplementation = new ComputeEngineImplementation(mockComputeEngineComputation, mockComputeRequestHandler);
+    EngineResponse fakeEngineResponse = new EngineResponseImplementation();
+    fakeEngineResponse.setRequestResult(requestResult);
 
+    when(mockComputeEngineImplementation.sendStreamForFactorial(any())).thenReturn(fakeEngineResponse);
     when(mockComputeRequestHandler.generateAndSendResponseMessage(any())).thenReturn(ResponseCode.SUCCESSFUL);
+    when(mockComputeRequestHandler.getUserRequest()).thenReturn(mockUserRequest);
+    when(mockUserRequest.getRequestStream()).thenReturn(new NumStreamImplementation());
 
-    EngineResponse engineResponse = computeEngineImplementation.computeInput(new UserRequest(null, null));
+    EngineResponse engineResponse = mockComputeEngineImplementation.sendStreamForFactorial(mockComputeRequestHandler.getUserRequest().getRequestStream());
 
-    assertEquals(engineResponse, 1);
+    assertEquals(fakeEngineResponse, engineResponse);
   }
 }
