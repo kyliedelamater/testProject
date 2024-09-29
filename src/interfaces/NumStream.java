@@ -1,6 +1,6 @@
 package interfaces;
 
-import java.uti.List;
+import java.util.List;
 
 public interface NumStream {
   List<Integer> getIntegers();
