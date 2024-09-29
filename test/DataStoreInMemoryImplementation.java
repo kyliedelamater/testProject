@@ -1,4 +1,4 @@
-package datastoreapi;
+package datastoreapitests;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,17 +6,25 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class DataStoreInMemoryImplementation {
-	private InputRequest input;
-	private OutputRequest output;
-		
-		@Test
-		public void readAndWriteData() {
-			List<Integer> input2 = input.readInput();
 
-			for(int i = 0; i < input2.size(); i++) {
-				String outputData = "Output = " + input2.get(i);
-				output.writeOutput(outputData);
-			}
+	@Test
+	public void readAndWriteData() {
+		List<Integer> inputList = new ArrayList<>();
+		List<String> outputList = new ArrayList<>();
+		
+		InputInMemoryImplementation input = new InputInMemoryImplementation(inputList);
+		OutputInMemoryImplementation output = new OutputInMemoryImplementation(outputList);
+		
+		int i = inputList.size();
+		while(!inputList.isEmpty()) {
+			input.readInput();
+			inputList.remove(i);
+			i--;
 		}
+		
+		for (int k = 0; k < inputList.size(); k++) {
+			output.writeOutput(outputList);
+		}
+	}
 
 }
