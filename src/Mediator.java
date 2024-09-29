@@ -4,7 +4,6 @@ import java.util.List;
 import datastoreapi.DataStoreAPI;
 import datastoreapi.InputRequest;
 import datastoreapi.OutputRequest;
-import interfaces.ComputeEngineComputation;
 import interfaces.NumStream;
 
 public class Mediator {
@@ -38,7 +37,7 @@ public class Mediator {
 			List<Integer> inputList = dataStoreApi.readInput(inputRequest);
 			NumStream inputNumStream = new NumStreamImplementation();
 			inputNumStream.setIntegerList(inputList);
-			NumStream outputNumStream = computeEngine.doFactorial(inputNumStream);
+			NumStream outputNumStream = computeEngine.doFactorial(inputNumStream).getRequestResult().getResultNumStream();
 			OutputRequest outputRequest = new OutputRequest(fileDestination.getFileName());
 			dataStoreApi.setOutputList(toStringList(outputNumStream));
 			List<String> outputList = dataStoreApi.writeOutput(outputRequest);

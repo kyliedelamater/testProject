@@ -1,5 +1,5 @@
 
-public class ConcreteEngineResponse implements EngineResponse{
+public class ConcreteEngineResponse implements EngineResponse {
 	
 	private ResponseCode responseCode;
 
@@ -17,6 +17,16 @@ public class ConcreteEngineResponse implements EngineResponse{
 	@Override
 	public RequestResult getRequestResult() {
 		return this.requestResult;
+	}
+
+	@Override
+	public void setResponseCode(ResponseCode responseCode) {
+		this.responseCode = responseCode;
+	}
+
+	@Override
+	public void setRequestResult(RequestResult requestResult) {
+		this.requestResult = requestResult;
 	}
 
 }

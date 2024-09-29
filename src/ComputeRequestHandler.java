@@ -1,11 +1,11 @@
 import interfaces.NumStream;
 
 public interface ComputeRequestHandler {
-  NumStream getIntegersForFactorial();
+  void setUserRequest(UserRequest userRequest);
+
+  UserRequest getUserRequest();
 
   ResponseCode generateAndSendResponseMessage(NumStream computeResults);
-
-  <T> ComputeRequestHandler computeRequestHandler(T userRequest);
 
   <T> void setDataApi(T dataStorageApi);
 }
