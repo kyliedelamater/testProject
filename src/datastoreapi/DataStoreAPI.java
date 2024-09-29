@@ -14,7 +14,11 @@ public class DataStoreAPI {
 	public DataStoreAPI() {
 		return;
 	}
-	
+
+	public DataStoreAPI(ComputeEngineAPI computeEngineAPI) {
+		this.computeEngineAPI = computeEngineAPI;
+	}
+
 	//getter
 	public List<Integer> getInputList() {
 		return inputList;

@@ -1,4 +1,3 @@
-import interfaces.ComputeEngineComputation;
 import org.junit.Test;
 
 
@@ -19,7 +18,7 @@ public class TestComputeEngineImplementation {
 
     when(mockComputeRequestHandler.generateAndSendResponseMessage(any())).thenReturn(ResponseCode.SUCCESSFUL);
 
-    EngineResponse engineResponse = computeEngineImplementation.computeInput(mockComputeRequestHandler);
+    EngineResponse engineResponse = computeEngineImplementation.sendStreamForFactorial(mockComputeRequestHandler.getNumStream());
 
     assertEquals(engineResponse, 1);
   }

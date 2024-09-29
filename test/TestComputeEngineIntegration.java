@@ -1,30 +1,26 @@
-import interfaces.ComputeEngineComputation;
+import datastoreapi.DataStoreAPI;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.List;
-
-import static org.mockito.Mockito.mock;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestComputeEngineIntegration {
 
   @Test
   public void testComputeEngineIntegration() {
-    List<Integer> numStream = List.of(1,10,25);
-    ComputeEngineComputation computeEngineComputation = mock(ComputeEngineComputation);
-
-    ComputeEngineComputation computeEngineComputation = new ComputeEngineImplementation();
-    // This will become a DatastoreApi object upon merging
-    Object dataStoreApi = null;
-    UserRequest userRequest = new UserRequest((UserRequestSource) numStream, new UserRequestDestination());
+    ArrayList<Integer> requestList = new ArrayList<>(Arrays.asList(1,10,25));
 
     // Create a computeRequestHandler with userRequest, and set it's datastoreapi
-    ComputeRequestHandler computeRequestHandler = new ComputeRequestHandler(userRequest);
+    DataStoreAPI dataStoreApi = new DataStoreAPI();
+    ComputeRequestHandler computeRequestHandler = new ComputeRequestHandlerImplementation(requestList);
     computeRequestHandler.setDataApi(dataStoreApi);
 
-    ComputeEngineImplementation computeEngineImplementation = new ComputeEngineImplementation(computeEngineComputation);
+    ComputeEngineComputation computationImplementation = new ComputationImplementation();
 
-    EngineResponse engineResponse = computeEngineImplementation.computeInput(computeRequestHandler);
+    ComputeEngine computeEngineImplementation = new ComputeEngineImplementation(computationImplementation, computeRequestHandler);
+
+    EngineResponse engineResponse = computeEngineImplementation.sendStreamForFactorial(computeRequestHandler.getNumStream());
 
     Assert.assertEquals(engineResponse.getRequestResult(), "1;1:10;362800:25;15511210043330985984000000");
   }

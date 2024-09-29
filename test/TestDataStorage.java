@@ -1,8 +1,8 @@
-package datastoreapitests;
-
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import datastoreapi.*;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -12,27 +12,24 @@ public class TestDataStorage {
 	@Test
 	public void testInputRequest() {
 		InputRequest inputRequest = new InputRequest();
-		checkInputResponse(inputRequest);
+		inputRequest.checkInputResponse(inputRequest);
 	}
 	
 	//test to check that the output request is valid?
 	@Test
 	public void testOutputRequest() {
 		OutputRequest outputRequest = new OutputRequest();
-		checkOutputResponse(outputRequest);
+		outputRequest.checkOutputResponse(outputRequest);
 		
 	}
 	
 	//test to check that the compute engine is passing integers
 	@Test
-	public void testDataStoreComputeEngine() throws Exception {
+	public void testDataStoreComputeEngine() {
 		
 		//mocking the interface
-		ComputeEngineAPI mockComputeEngine = Mockito.mock(ComputeEngineAPI.class);
-		
-		//if an integer is passed from the compute engine, it is valid
-		when(mockComputeEngine.validate(any(Integer.class))).thenReturn(true);
-		
+		ComputeEngineAPI mockComputeEngine = mock(ComputeEngineAPI.class);
+
 		//DataStoreAPI with mockComputeEngine
 		DataStoreAPI testDataStorage = new DataStoreAPI(mockComputeEngine);
 	
@@ -42,19 +39,19 @@ public class TestDataStorage {
 	
 	//test to check that input response works
 	@Test
-	public void testDataStoreInputResponse() throws Exception{
+	public void testDataStoreInputResponse() {
 		
 		//mocking the interface
-		InputResponse mockInputResponse = Mockito.mock(InputResponse.class);	
-		
+		InputResponse mockInputResponse = mock(InputResponse.class);
+
 		//DataStoreAPI with mockInputResponse
-		DataStoreAPI testDataStorage = new DataStoreAPI(mockInputResponse);
+		DataStoreAPI testDataStorage = mock(DataStoreAPI.class);
 		
 		//inputRequest object
 		InputRequest inputRequest = new InputRequest();
 		
 		//when an input is read into the dataStorage, return input response
-		when(testDataStorage.readInput(InputRequest.class).thenReturn(mockInputResponse));
+		when(testDataStorage.readInput(inputRequest)).thenReturn(mockInputResponse);
 		
 		//test that readInput works
 		testDataStorage.readInput(inputRequest);		
@@ -62,23 +59,21 @@ public class TestDataStorage {
 	
 	//test to check that output response works
 	@Test
-	public void testDataStoreOutputResponse() throws Exception{
+	public void testDataStoreOutputResponse() {
 		
 		//mocking the interface
-		OutputResponse mockOutputResponse = Mockito.mock(OutputResponse.class);	
-		
+		OutputResponse mockOutputResponse = mock(OutputResponse.class);
+
 		//DataStoreAPI with mockOutputResponse
-		DataStoreAPI testDataStorage = new DataStoreAPI(mockOutputResponse);
+		DataStoreAPI testDataStorage = mock(DataStoreAPI.class);
 		
 		//outputRequest object
 		OutputRequest outputRequest = new OutputRequest();
 		
 		//when an output is written from dataStorage, return output response
-		when(testDataStorage.writeOutput(OutputRequest.class).thenReturn(mockOutputResponse));
+		when(testDataStorage.writeOutput(outputRequest)).thenReturn(mockOutputResponse);
 		
 		//test that writeOutput works
 		testDataStorage.writeOutput(outputRequest);
 	}
-	
-	
 }
