@@ -51,8 +51,8 @@ public class Mediator {
 	}
 	
 	private List<String> toStringList(NumStream stream){
-		List<Integer> integers = (ArrayList<Integer>) stream.getIntegers();
-		List<String> strings = new ArrayList<String>();
+		List<Integer> integers = stream.getIntegers();
+		List<String> strings = new ArrayList<>();
 		for (Integer integer : integers) {
 			strings.add(String.valueOf(integer));
 		}
