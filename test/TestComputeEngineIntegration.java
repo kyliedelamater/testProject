@@ -13,15 +13,16 @@ public class TestComputeEngineIntegration {
 
     // Create a computeRequestHandler with userRequest, and set it's datastoreapi
     DataStoreAPI dataStoreApi = new DataStoreAPI();
-    ComputeRequestHandler computeRequestHandler = new ComputeRequestHandlerImplementation(requestList);
+    UserRequest userRequest = new UserRequest(new UserRequestSource(), new UserRequestDestination(), new NumStreamImplementation(requestList));
+
+    ComputeRequestHandler computeRequestHandler = new ComputeRequestHandlerImplementation(userRequest);
     computeRequestHandler.setDataApi(dataStoreApi);
 
     ComputeEngineComputation computationImplementation = new ComputationImplementation();
 
     ComputeEngine computeEngineImplementation = new ComputeEngineImplementation(computationImplementation, computeRequestHandler);
 
-    UserRequest userRequest = new UserRequest(new UserRequestSource(), new UserRequestDestination());
-    userRequest.setRequestStream(computeRequestHandler.getNumStream());
+    userRequest.setRequestStream(computeRequestHandler.getUserRequest().getRequestStream());
 
     EngineResponse engineResponse = computeEngineImplementation.submitRequest(userRequest);
 

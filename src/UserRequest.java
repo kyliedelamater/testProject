@@ -1,18 +1,28 @@
 import interfaces.NumStream;
 
 public class UserRequest {
-	NumStream requestStream;
-	char resultDelimiter;
-	char pairDelimiter;
+	private NumStream requestStream;
+	private UserRequestSource userRequestSource;
+	private UserRequestDestination userRequestDestination;
+	private char resultDelimiter;
+	private char pairDelimiter;
 
-	public UserRequest(UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, char resultDelimiter,
+	public UserRequest(NumStream requestStream, UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, char resultDelimiter,
 			char pairDelimiter) {
-		this.resultDelimiter = resultDelimiter;
+		this.requestStream = requestStream;
 		this.pairDelimiter = pairDelimiter;
+		this.resultDelimiter = resultDelimiter;
+		this.userRequestDestination = userRequestDestination;
+		this.userRequestSource = userRequestSource;
+	}
+
+	public UserRequest(UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, NumStream requestStream) {
+		this(requestStream, userRequestSource, userRequestDestination, ';', ':');
 	}
 
 	public UserRequest(UserRequestSource userRequestSource, UserRequestDestination userRequestDestination) {
-		this(userRequestSource, userRequestDestination, ';', ':');
+		this.userRequestSource = userRequestSource;
+		this.userRequestDestination = userRequestDestination;
 	}
 
 	public NumStream getRequestStream() {
@@ -21,5 +31,21 @@ public class UserRequest {
 
 	public void setRequestStream(NumStream requestStream) {
 		this.requestStream = requestStream;
+	}
+	
+	public UserRequestSource getUserRequestSource() {
+		return userRequestSource;
+	}
+
+	public UserRequestDestination getUserRequestDestination() {
+		return userRequestDestination;
+	}
+
+	public char getResultDelimiter() {
+		return resultDelimiter;
+	}
+
+	public char getPairDelimiter() {
+		return pairDelimiter;
 	}
 }

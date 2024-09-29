@@ -1,9 +1,9 @@
 import interfaces.NumStream;
 
 public interface ComputeRequestHandler {
-  void setNumstream(NumStream numStream);
+  void setUserRequest(UserRequest userRequest);
 
-  NumStream getNumStream();
+  UserRequest getUserRequest();
 
   ResponseCode generateAndSendResponseMessage(NumStream computeResults);
 

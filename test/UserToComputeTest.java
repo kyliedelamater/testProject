@@ -17,7 +17,7 @@ public class UserToComputeTest {
 		when(mockEngineResponse.getResponseCode()).thenReturn(ResponseCode.SUCCESSFUL);
 		when(mockEngineResponse.getRequestResult()).thenReturn(new RequestResultImplementation());
 
-		UserRequest request = new UserRequest(mock(UserRequestSource.class), mock(UserRequestDestination.class));
+		UserRequest request = new UserRequest(mock(UserRequestSource.class), mock(UserRequestDestination.class), null);
 
 		EngineResponse response = mockUserIOApi.sendRequest(request);
 

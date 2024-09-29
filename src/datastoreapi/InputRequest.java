@@ -1,8 +1,25 @@
 package datastoreapi;
 
 public class InputRequest {
+	private String file;
 
-  public void checkInputResponse(InputRequest inputRequest) {
+	public InputRequest(String file) {
+		this.setFile(file);
+	}
 
-  }
+	public InputRequest() {
+		return;
+	}
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+	public void checkInputResponse(InputRequest inputRequest) {
+
+	}
 }

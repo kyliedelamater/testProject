@@ -47,11 +47,11 @@ public class ComputeEngineImplementation implements ComputeEngine {
 
     for (Integer requestInteger : requestStream) {
       result.append(requestInteger);
-      result.append(userRequest.resultDelimiter);
+      result.append(userRequest.getResultDelimiter());
       result.append(resultList.get(resultPosition));
 
       if(requestStream.size() > resultPosition + 1) {
-        result.append(userRequest.pairDelimiter);
+        result.append(userRequest.getPairDelimiter());
       }
 
       resultPosition++;

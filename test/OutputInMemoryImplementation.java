@@ -1,12 +1,20 @@
-import java.util.ArrayList;
+package datastoreapitests;
+
 import java.util.List;
 
 public class OutputInMemoryImplementation {
 
-	List<String> outputConfig = new ArrayList<>();
+	private List<String> outputConfig;
 	
-	public void writeOutput(String output) {
-		outputConfig.add(output);
+	public OutputInMemoryImplementation(List<String> outputConfig) {
+		this.outputConfig = outputConfig;
+	}
+
+	public void writeOutput(List<String> output) {
+		outputConfig.addAll(output);
+	}
+
+	public List<String> getOutputConfig() {
+		return outputConfig;
 	}
 }
-
