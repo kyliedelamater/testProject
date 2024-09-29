@@ -1,4 +1,18 @@
 
 public enum ResponseCode {
-	SUCCESSFUL, FAILED
+
+	SUCCESSFUL(false),
+	FAILED(true),
+	UNIMPLEMENTED(true);
+	
+	private final boolean failure;
+	
+	private ResponseCode(boolean failure) {
+		this.failure = failure;
+	}
+	
+	public boolean isFailure() {
+		return this.failure;
+	}
+	
 }
