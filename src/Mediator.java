@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.List;
 
 import datastoreapi.DataStoreAPI;
 import datastoreapi.InputRequest;
+import datastoreapi.OutputRequest;
 import interfaces.ComputeEngineComputation;
 import interfaces.NumStream;
 
@@ -37,7 +39,9 @@ public class Mediator {
 			NumStream inputNumStream = new NumStreamImplementation();
 			inputNumStream.setIntegerList(inputList);
 			NumStream outputNumStream = computeEngine.doFactorial(inputNumStream);
-			List<String> outputList = dataStoreAPi.writeOutput(outputNumStream.getInteger());
+			OutputRequest outputRequest = new OutputRequest(fileDestination.getFileName());
+			dataStoreApi.setOutputList(toStringList(outputNumStream));
+			List<String> outputList = dataStoreApi.writeOutput(outputRequest);
 			if (!outputList.isEmpty()) {
 				response = new ConcreteEngineResponse(ResponseCode.SUCCESSFUL);
 			}
@@ -45,6 +49,16 @@ public class Mediator {
 			response = new ConcreteEngineResponse(ResponseCode.UNIMPLEMENTED);
 		}
 		provider.propigateResponse(response);
+	}
+	
+	private List<String> toStringList(NumStream stream){
+		ArrayList<Integer> integers = (ArrayList<Integer>) stream.getIntegers();
+		ArrayList<String> strings = new ArrayList<String>();
+		for (Integer integer : integers) {
+			strings.add(String.valueOf(integer));
+		}
+		return strings;
+
 	}
 	
 }
