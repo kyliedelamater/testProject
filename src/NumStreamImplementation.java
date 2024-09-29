@@ -13,7 +13,7 @@ public class NumStreamImplementation implements NumStream {
     this.integerList = integerList;
   }
 
-  public Object getIntegers() {
+  public List<Integer> getIntegers() {
     return integerList;
   }
 
