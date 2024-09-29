@@ -1,0 +1,23 @@
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+public class MediatorClassTest {
+
+	@Test
+	   public void testToStringList() {
+
+        NumStreamImplementation numStream = new NumStreamImplementation();
+        
+        List<Integer> testList = List.of(0, 1, 2, 3);
+        numStream.setIntegerList(testList);  
+
+        List<String> output = toStringList(numStream);
+
+        List<String> expectedOutput = List.of("0", "1" , "2", "3");
+
+        assertEquals(expectedOutput, output);
+    }
+}
