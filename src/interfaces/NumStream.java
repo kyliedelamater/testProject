@@ -5,5 +5,5 @@ import java.util.List;
 public interface NumStream {
   List<Integer> getIntegers();
 
-  void setIntegerList(Object integerList);
+  void setIntegerList(List<Integer> integerList);
 }
