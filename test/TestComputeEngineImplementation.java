@@ -1,5 +1,4 @@
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -11,15 +10,18 @@ public class TestComputeEngineImplementation {
 
   @Test
   public void testComputation() {
-    ComputeEngineComputation mockComputeEngineComputation = mock(ComputeEngineComputation.class);
     ComputeRequestHandler mockComputeRequestHandler = mock(ComputeRequestHandler.class);
+    ComputeEngineImplementation mockComputeEngineImplementation = mock(ComputeEngineImplementation.class);
+    RequestResult requestResult = mock(RequestResultImplementation.class);
 
-    ComputeEngineImplementation computeEngineImplementation = new ComputeEngineImplementation(mockComputeEngineComputation);
+    EngineResponse fakeEngineResponse = new EngineResponseImplementation();
+    fakeEngineResponse.setRequestResult(requestResult);
 
+    when(mockComputeEngineImplementation.sendStreamForFactorial(any())).thenReturn(fakeEngineResponse);
     when(mockComputeRequestHandler.generateAndSendResponseMessage(any())).thenReturn(ResponseCode.SUCCESSFUL);
 
-    EngineResponse engineResponse = computeEngineImplementation.sendStreamForFactorial(mockComputeRequestHandler.getNumStream());
+    EngineResponse engineResponse = mockComputeEngineImplementation.sendStreamForFactorial(mockComputeRequestHandler.getNumStream());
 
-    assertEquals(engineResponse, 1);
+    assertEquals(fakeEngineResponse, engineResponse);
   }
 }

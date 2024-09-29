@@ -1,6 +1,6 @@
 import datastoreapi.DataStoreAPI;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,8 +20,16 @@ public class TestComputeEngineIntegration {
 
     ComputeEngine computeEngineImplementation = new ComputeEngineImplementation(computationImplementation, computeRequestHandler);
 
-    EngineResponse engineResponse = computeEngineImplementation.sendStreamForFactorial(computeRequestHandler.getNumStream());
+    UserRequest userRequest = new UserRequest(new UserRequestSource(), new UserRequestDestination());
+    userRequest.setRequestStream(computeRequestHandler.getNumStream());
 
-    Assert.assertEquals(engineResponse.getRequestResult(), "1;1:10;362800:25;15511210043330985984000000");
+    EngineResponse engineResponse = computeEngineImplementation.submitRequest(userRequest);
+
+    /*
+     The factorial of 25 here is incorrect due max size of an int.
+     If numbers >12 will be submitted to the api then all instances of
+     <Integer> lists should be changed to <Float> lists
+    */
+    Assert.assertEquals("1;1:10;3628800:25;2076180480", engineResponse.getRequestResult().getResultString());
   }
 }

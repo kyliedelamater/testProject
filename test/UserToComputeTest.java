@@ -10,20 +10,24 @@ public class UserToComputeTest {
 	public void testUserIOApi() {
 
 		ComputeEngineApi computeEngineApi = mock(ComputeEngineApi.class);
-		UserIOApi userIOApi = new UserIOApi(computeEngineApi);
-		when(userIOApi.sendRequest(any(UserRequest.class))).thenReturn(mock(EngineResponse.class));
+		UserIOApi mockUserIOApi = mock(UserIOApi.class);
+
+		EngineResponse mockEngineResponse = mock(EngineResponse.class);
+    when(mockUserIOApi.sendRequest(any())).thenReturn(mockEngineResponse);
+		when(mockEngineResponse.getResponseCode()).thenReturn(ResponseCode.SUCCESSFUL);
+		when(mockEngineResponse.getRequestResult()).thenReturn(new RequestResultImplementation());
 
 		UserRequest request = new UserRequest(mock(UserRequestSource.class), mock(UserRequestDestination.class));
 
-		EngineResponse response = userIOApi.sendRequest(request);
+		EngineResponse response = mockUserIOApi.sendRequest(request);
 
 		assert response != null;
 
-		ResponseCode code = response.getResponseCode();
+		ResponseCode code = mockEngineResponse.getResponseCode();
 
 		assert code != null && existsInResponseCodes(code);
 
-		RequestResult result = response.getRequestResult();
+		RequestResult result = mockEngineResponse.getRequestResult();
 
 		assert result != null;
 

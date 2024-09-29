@@ -13,21 +13,23 @@ public class EngineResponseImplementation implements EngineResponse {
     this.requestResult = new RequestResultImplementation(requestResult);
   }
 
-  public void setRequestResult (ArrayList<Integer> result) {
-    this.requestResult = new RequestResultImplementation(result);
+  @Override
+  public void setRequestResult(RequestResult result) {
+    this.requestResult = result;
   }
 
+  @Override
   public void setResponseCode(ResponseCode responseCode) {
     this.responseCode = responseCode;
   }
 
   @Override
   public ResponseCode getResponseCode() {
-    return null;
+    return this.responseCode;
   }
 
   @Override
   public RequestResult getRequestResult() {
-    return null;
+    return this.requestResult;
   }
 }
