@@ -1,10 +1,13 @@
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import datastoreapi.*;
+import datastoreapi.ComputeEngineAPI;
+import datastoreapi.DataStoreAPI;
+import datastoreapi.InputRequest;
+import datastoreapi.OutputRequest;
+import datastoreapi.InputResponse;
+import datastoreapi.OutputResponse;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 public class TestDataStorage {
 	
