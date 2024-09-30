@@ -8,13 +8,13 @@ import interfaces.NumStream;
 
 public class Mediator {
 	
-	private static Mediator mediator = new Mediator(new DataStoreAPI(), new ComputationImplementation());
+	private static Mediator mediator = new Mediator(new DataStoreAPI(), new ComputeEngineImplementation(new ComputationImplementation(), new ComputeRequestHandlerImplementation()));
 	
 	private DataStoreAPI dataStoreApi;
 	
-	private ComputeEngineComputation computeEngine;
+	private ComputeEngine computeEngine;
 	
-	public Mediator(DataStoreAPI dataStoreApi, ComputeEngineComputation computeEngine) {
+	public Mediator(DataStoreAPI dataStoreApi, ComputeEngine computeEngine) {
 		this.dataStoreApi = dataStoreApi;
 		this.computeEngine = computeEngine;
 	}
@@ -37,27 +37,20 @@ public class Mediator {
 			List<Integer> inputList = dataStoreApi.readInput(inputRequest);
 			NumStream inputNumStream = new NumStreamImplementation();
 			inputNumStream.setIntegerList(inputList);
-			NumStream outputNumStream = computeEngine.doFactorial(inputNumStream).getRequestResult().getResultNumStream();
+			EngineResponse engineResponse = computeEngine.submitRequest(userRequest);
+			if (engineResponse instanceof EngineResponseImplementation engineResponseImplementation) {
+				dataStoreApi.setOutputList(List.of(engineResponseImplementation.getRequestResult().getResultString()));
+			}
 			OutputRequest outputRequest = new OutputRequest(fileDestination.getFileName());
-			dataStoreApi.setOutputList(toStringList(outputNumStream));
 			List<String> outputList = dataStoreApi.writeOutput(outputRequest);
 			if (!outputList.isEmpty()) {
-				response = new ConcreteEngineResponse(ResponseCode.SUCCESSFUL);
+				response.setResponseCode(ResponseCode.SUCCESSFUL); 
+				response.setRequestResult(engineResponse.getRequestResult());
 			}
 		} else {
 			response = new ConcreteEngineResponse(ResponseCode.UNIMPLEMENTED);
 		}
 		provider.propigateResponse(response);
-	}
-	
-	private List<String> toStringList(NumStream stream){
-		List<Integer> integers = stream.getIntegers();
-		List<String> strings = new ArrayList<>();
-		for (Integer integer : integers) {
-			strings.add(String.valueOf(integer));
-		}
-		return strings;
-
 	}
 	
 }
