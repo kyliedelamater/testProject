@@ -38,9 +38,7 @@ public class Mediator {
 			NumStream inputNumStream = new NumStreamImplementation();
 			inputNumStream.setIntegerList(inputList);
 			EngineResponse engineResponse = computeEngine.submitRequest(userRequest);
-			if (engineResponse instanceof EngineResponseImplementation engineResponseImplementation) {
-				dataStoreApi.setOutputList(List.of(engineResponseImplementation.getRequestResult().getResultString()));
-			}
+			dataStoreApi.setOutputList(List.of(engineResponse.getRequestResult().getResultString()));
 			OutputRequest outputRequest = new OutputRequest(fileDestination.getFileName());
 			List<String> outputList = dataStoreApi.writeOutput(outputRequest);
 			if (!outputList.isEmpty()) {
