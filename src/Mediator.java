@@ -1,5 +1,5 @@
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import datastoreapi.DataStoreAPI;
 import datastoreapi.InputRequest;
@@ -28,27 +28,49 @@ public class Mediator {
 	}
 	
 	public <T> void sendInput(UserRequestProvider<T> provider) {
+
 		UserRequest userRequest = provider.generateRequest(provider.getInput());
-		UserRequestDestination destination = userRequest.getUserRequestDestination();
-		UserRequestSource source = userRequest.getUserRequestSource();
+
 		EngineResponse response = new ConcreteEngineResponse(ResponseCode.FAILED);
-		if (source instanceof FileUserRequestSource fileSource && destination instanceof FileUserRequestDestination fileDestination) {
-			InputRequest inputRequest = new InputRequest(fileSource.getFileName());
-			List<Integer> inputList = dataStoreApi.readInput(inputRequest);
-			NumStream inputNumStream = new NumStreamImplementation();
+
+		Optional<InputRequest> inRequest = generateInputRequest(userRequest);
+
+		NumStream inputNumStream = new NumStreamImplementation();
+
+		if (inRequest.isPresent()) {
+			List<Integer> inputList = dataStoreApi.readInput(inRequest.get());
 			inputNumStream.setIntegerList(inputList);
-			EngineResponse engineResponse = computeEngine.submitRequest(userRequest);
-			dataStoreApi.setOutputList(List.of(engineResponse.getRequestResult().getResultString()));
-			OutputRequest outputRequest = new OutputRequest(fileDestination.getFileName());
-			List<String> outputList = dataStoreApi.writeOutput(outputRequest);
-			if (!outputList.isEmpty()) {
+		}
+
+		userRequest.setRequestStream(inputNumStream);
+
+		EngineResponse engineResponse = computeEngine.submitRequest(userRequest);
+		
+		if (!engineResponse.getResponseCode().isFailure()) {
+			Optional<OutputRequest> outRequest = generateOutputRequest(userRequest);
+			if (outRequest.isPresent()) {
+				dataStoreApi.setOutputList(List.of(engineResponse.getRequestResult().getResultString()));
+				dataStoreApi.writeOutput(outRequest.get());
 				response.setResponseCode(ResponseCode.SUCCESSFUL); 
 				response.setRequestResult(engineResponse.getRequestResult());
 			}
-		} else {
-			response = new ConcreteEngineResponse(ResponseCode.UNIMPLEMENTED);
 		}
+
 		provider.propigateResponse(response);
+	}
+	
+	private Optional<InputRequest> generateInputRequest(UserRequest request) {
+		if (request.getUserRequestSource() instanceof FileUserRequestSource fileSource) {
+			return Optional.of(new InputRequest(fileSource.getFileName()));
+		}
+		return Optional.empty();
+	}
+	
+	private Optional<OutputRequest> generateOutputRequest(UserRequest request) {
+		if (request.getUserRequestDestination() instanceof FileUserRequestDestination fileDestination) {
+			return Optional.of(new OutputRequest(fileDestination.getFileName()));
+		}
+		return Optional.empty();
 	}
 	
 }
