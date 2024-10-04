@@ -4,6 +4,9 @@ public class OutputRequest {
 	private String file;
 
 	public OutputRequest(String file) {
+	if(file == null) {
+		throw new IllegalArgumentException("Output file cannot be null");
+	}
 		this.setFile(file);
 	}
 
@@ -16,6 +19,9 @@ public class OutputRequest {
 	}
 
 	public void setFile(String file) {
+	if(file == null) {
+		throw new IllegalArgumentException("Output file cannot be null");
+	}
 		this.file = file;
 	}
 }
