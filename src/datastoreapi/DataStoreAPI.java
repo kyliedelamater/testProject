@@ -22,7 +22,6 @@ public class DataStoreAPI {
 	InputResponse inputResponse;
 
 	public DataStoreAPI() {
-		return;
 	}
 
 	public DataStoreAPI(OutputResponse outputResponse) {
