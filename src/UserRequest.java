@@ -9,6 +9,21 @@ public class UserRequest {
 
 	public UserRequest(NumStream requestStream, UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, char resultDelimiter,
 			char pairDelimiter) {
+		if(requestStream == null)) {
+			throw new IllegalArgumentException("NumStream cannot be null");
+		}
+		if(userRequestSource == null)) {
+			throw new IllegalArgumentException("UserRequestSource cannot be null");
+		}
+		if(userRequestDestination == null)) {
+			throw new IllegalArgumentException("UserRequestDestination cannot be null");
+		}
+		if(resultDelimiter == null)) {
+			throw new IllegalArgumentException("Delimiter cannot be null");
+		}
+		if(pairDelimiter == null)) {
+			throw new IllegalArgumentException("Pair delimiter cannot be null");
+		}
 		this.requestStream = requestStream;
 		this.pairDelimiter = pairDelimiter;
 		this.resultDelimiter = resultDelimiter;
@@ -17,10 +32,25 @@ public class UserRequest {
 	}
 
 	public UserRequest(UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, NumStream requestStream) {
+		if(requestStream == null)) {
+			throw new IllegalArgumentException("NumStream cannot be null");
+		}
+		if(userRequestSource == null)) {
+			throw new IllegalArgumentException("UserRequestSource cannot be null");
+		}
+		if(userRequestDestination == null)) {
+			throw new IllegalArgumentException("UserRequestDestination cannot be null");
+		}
 		this(requestStream, userRequestSource, userRequestDestination, ';', ':');
 	}
 
 	public UserRequest(UserRequestSource userRequestSource, UserRequestDestination userRequestDestination) {
+		if(userRequestSource == null)) {
+			throw new IllegalArgumentException("UserRequestSource cannot be null");
+		}
+		if(userRequestDestination == null)) {
+			throw new IllegalArgumentException("UserRequestDestination cannot be null");
+		}
 		this.userRequestSource = userRequestSource;
 		this.userRequestDestination = userRequestDestination;
 	}
@@ -30,6 +60,9 @@ public class UserRequest {
 	}
 
 	public void setRequestStream(NumStream requestStream) {
+		if(requestStream == null)) {
+			throw new IllegalArgumentException("NumStream cannot be null");
+		}
 		this.requestStream = requestStream;
 	}
 	
