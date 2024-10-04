@@ -1,5 +1,5 @@
 import interfaces.NumStream;
-import datastoreapi.DataStoreAPI
+import datastoreapi.DataStoreAPI;
   
 public interface ComputeRequestHandler {
   void setUserRequest(UserRequest userRequest);
