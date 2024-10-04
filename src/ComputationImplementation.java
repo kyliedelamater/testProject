@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class ComputationImplementation implements ComputeEngineComputation {
   @Override
   public EngineResponse doFactorial(NumStream numStream) {
+    if(numStream == null) {
+			throw new IllegalArgumentException("NumStream cannot be null");
+		}
     ArrayList<Integer> resultList = new ArrayList<>();
 
     factorialLoop((ArrayList<Integer>) numStream.getIntegers(), resultList);
@@ -13,7 +16,18 @@ public class ComputationImplementation implements ComputeEngineComputation {
   }
 
   public void factorialLoop(ArrayList<Integer> inputList, ArrayList<Integer> resultList) {
+  	if(inputList == null || inputList.isEmpty()) {
+			throw new IllegalArgumentException("Input list cannot be null or empty");
+		}
+		if(resultList == null) {
+			throw new IllegalArgumentException("Output list cannot be null");
+		}
+    
     for (Integer inputNum : inputList) {
+			if(inputNum < 0) {
+				throw new IllegalArgumentException("Cannot compute the factorial of " + inputNum);
+			}
+      
       int result = 1;
 
       for (int interval = inputNum; interval > 0; interval--) {
