@@ -10,6 +10,9 @@ public class NumStreamImplementation implements NumStream {
   }
 
   public NumStreamImplementation(List<Integer> integerList) {
+		if(integerList == null)) {
+			throw new IllegalArgumentException("Integer list cannot be null");
+		}
     this.integerList = integerList;
   }
 
@@ -18,6 +21,9 @@ public class NumStreamImplementation implements NumStream {
   }
 
   public void setIntegerList(List<Integer> integerList) {
+		if(integerList == null)) {
+			throw new IllegalArgumentException("Integer list cannot be null");
+		}
     this.integerList =  integerList;
   }
 }
