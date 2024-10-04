@@ -18,12 +18,7 @@ public class UserRequest {
 		if(userRequestDestination == null){
 			throw new IllegalArgumentException("UserRequestDestination cannot be null");
 		}
-		if(resultDelimiter == ' ') {
-			throw new IllegalArgumentException("Delimiter cannot be null");
-		}
-		if(pairDelimiter == ' ') {
-			throw new IllegalArgumentException("Pair delimiter cannot be null");
-		}
+
 		this.requestStream = requestStream;
 		this.pairDelimiter = pairDelimiter;
 		this.resultDelimiter = resultDelimiter;
@@ -32,15 +27,6 @@ public class UserRequest {
 	}
 
 	public UserRequest(UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, NumStream requestStream) {
-		if(requestStream == null) {
-			throw new IllegalArgumentException("NumStream cannot be null");
-		}
-		if(userRequestSource == null) {
-			throw new IllegalArgumentException("UserRequestSource cannot be null");
-		}
-		if(userRequestDestination == null) {
-			throw new IllegalArgumentException("UserRequestDestination cannot be null");
-		}
 		this(requestStream, userRequestSource, userRequestDestination, ';', ':');
 	}
 
