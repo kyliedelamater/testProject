@@ -18,10 +18,10 @@ public class UserRequest {
 		if(userRequestDestination == null){
 			throw new IllegalArgumentException("UserRequestDestination cannot be null");
 		}
-		if(resultDelimiter == null) {
+		if(resultDelimiter == ' ') {
 			throw new IllegalArgumentException("Delimiter cannot be null");
 		}
-		if(pairDelimiter == null) {
+		if(pairDelimiter == ' ') {
 			throw new IllegalArgumentException("Pair delimiter cannot be null");
 		}
 		this.requestStream = requestStream;
