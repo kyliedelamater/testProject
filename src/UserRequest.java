@@ -9,9 +9,6 @@ public class UserRequest {
 
 	public UserRequest(NumStream requestStream, UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, char resultDelimiter,
 			char pairDelimiter) {
-		if(requestStream == null) {
-			throw new IllegalArgumentException("NumStream cannot be null");
-		}
 		if(userRequestSource == null) {
 			throw new IllegalArgumentException("UserRequestSource cannot be null");
 		}
