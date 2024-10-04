@@ -6,6 +6,9 @@ public class ConcreteEngineResponse implements EngineResponse {
 	private RequestResult requestResult;
 	
 	public ConcreteEngineResponse(ResponseCode responseCode) {
+		if(ResponseCode == null) {
+			throw new IllegalArgumentException("ResponseCode cannot be null");
+		}
 		this.responseCode = responseCode;
 	}
 
@@ -21,11 +24,17 @@ public class ConcreteEngineResponse implements EngineResponse {
 
 	@Override
 	public void setResponseCode(ResponseCode responseCode) {
+		if(responseCode == null) {
+			throw new IllegalArgumentException("ResponseCode cannot be null");
+		}
 		this.responseCode = responseCode;
 	}
 
 	@Override
 	public void setRequestResult(RequestResult requestResult) {
+		if(requestResult == null) {
+			throw new IllegalArgumentException("RequestResult cannot be null");
+		}
 		this.requestResult = requestResult;
 	}
 
