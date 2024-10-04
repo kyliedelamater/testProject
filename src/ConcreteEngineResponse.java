@@ -6,7 +6,7 @@ public class ConcreteEngineResponse implements EngineResponse {
 	private RequestResult requestResult;
 	
 	public ConcreteEngineResponse(ResponseCode responseCode) {
-		if(ResponseCode == null) {
+		if(responseCode == null) {
 			throw new IllegalArgumentException("ResponseCode cannot be null");
 		}
 		this.responseCode = responseCode;
