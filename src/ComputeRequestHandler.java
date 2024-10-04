@@ -1,5 +1,6 @@
 import interfaces.NumStream;
-
+import datastoreapi.DataStoreAPI
+  
 public interface ComputeRequestHandler {
   void setUserRequest(UserRequest userRequest);
 
@@ -7,5 +8,5 @@ public interface ComputeRequestHandler {
 
   ResponseCode generateAndSendResponseMessage(NumStream computeResults);
 
-  <T> void setDataApi(T dataStorageApi);
+  <T> void setDataApi(DataStoreAPI dataStorageApi);
 }
