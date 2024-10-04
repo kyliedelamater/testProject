@@ -50,7 +50,7 @@ public class ComputeRequestHandlerImplementation implements ComputeRequestHandle
 		if(dataStoreAPI == null) {
 			throw new IllegalArgumentException("DataStoreAPI cannot be null");
 		}
-		this.dataStoreAPI = (DataStoreAPI) dataStorageApi;
+		this.dataStoreAPI = dataStorageApi;
 	}
 }
 
