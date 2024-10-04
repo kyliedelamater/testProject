@@ -8,5 +8,5 @@ public interface ComputeRequestHandler {
 
   ResponseCode generateAndSendResponseMessage(NumStream computeResults);
 
-  <T> void setDataApi(DataStoreAPI dataStorageApi);
+  void setDataApi(DataStoreAPI dataStorageApi);
 }
