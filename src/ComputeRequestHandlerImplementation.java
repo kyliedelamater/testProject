@@ -46,7 +46,7 @@ public class ComputeRequestHandlerImplementation implements ComputeRequestHandle
 	}
 
 	@Override
-	public <T> void setDataApi(T dataStorageApi) {
+	public void setDataApi(DataStoreAPI dataStorageApi) {
 		if(dataStoreAPI == null) {
 			throw new IllegalArgumentException("DataStoreAPI cannot be null");
 		}
