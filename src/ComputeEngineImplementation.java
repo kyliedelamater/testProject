@@ -25,6 +25,9 @@ public class ComputeEngineImplementation implements ComputeEngine {
 
   @Override
   public EngineResponse submitRequest(UserRequest userRequest) {
+		if(userRequest == null) {
+			throw new IllegalArgumentException("UserRequest cannot be null");
+		}
     EngineResponse engineResponse = sendStreamForFactorial(userRequest.getRequestStream());
     NumStream resultStream = engineResponse.getRequestResult().getResultNumStream();
 
@@ -37,10 +40,16 @@ public class ComputeEngineImplementation implements ComputeEngine {
 
   @Override
   public EngineResponse sendStreamForFactorial(NumStream numStream) {
+		if(numStream == null) {
+			throw new IllegalArgumentException("NumStream cannot be null");
+		}
     return computeEngineComputation.doFactorial(numStream);
   }
 
   public String processResultString(UserRequest userRequest, ArrayList<Integer> resultList) {
+		if(userRequest == null){
+			throw new IllegalArgumentException("UserRequest cannot be null");
+		}
     ArrayList<Integer> requestStream = (ArrayList<Integer>) userRequest.getRequestStream().getIntegers();
     StringBuilder result = new StringBuilder();
     int resultPosition = 0;
