@@ -11,6 +11,9 @@ public class RequestResultImplementation implements RequestResult {
   }
 
   public RequestResultImplementation(ArrayList<Integer> result) {
+		if(result == null) {
+			throw new IllegalArgumentException("Result list cannot be null");
+		}
     this.result = new NumStreamImplementation(result);
   }
 
@@ -24,10 +27,16 @@ public class RequestResultImplementation implements RequestResult {
   }
 
   public void setResultNumStream(NumStream resultNumStream) {
+		if(resultNumStream == null) {
+			throw new IllegalArgumentException("NumStream cannot be null");
+		}
     this.result = result;
   }
 
   public void setResultString(String resultString) {
+		if(resultString == null) {
+			throw new IllegalArgumentException("Result cannot be null");
+		}
     this.resultString = resultString;
   }
 }
