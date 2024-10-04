@@ -13,7 +13,7 @@ public class CommandLineEntryPoint implements UserRequestProvider<String[]>{
 			System.out.println("Ex: CommandLineEntryPoint inputfilename.txt outputfile.txt");
 			System.exit(0);
 		}
-		if (args.length != 2) {
+		if (args.length != 2 || args.isEmpty()) {
 			System.err.println("Incorrect number of command line arguments, see --help");
 			System.exit(1);
 		}
@@ -32,6 +32,9 @@ public class CommandLineEntryPoint implements UserRequestProvider<String[]>{
 
 	@Override
 	public void propigateResponse(EngineResponse response) {
+		if(response == null) {
+			throw new IllegalArgumentException("Response cannot be null");
+		}
 		if (response.getResponseCode().isFailure()){
 			System.out.println("Successful! Output written at: " + args[1]);
 		} else {
