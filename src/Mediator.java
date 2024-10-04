@@ -15,7 +15,7 @@ public class Mediator {
 	private ComputeEngine computeEngine;
 
 	public Mediator(DataStoreAPI dataStoreApi, ComputeEngine computeEngine) {
-		if(dataStoreApi == null)) {
+		if(dataStoreApi == null) {
 			throw new IllegalArgumentException("DataStoreAPI cannot be null");
 		}
 		if(computeEngine == null) {
