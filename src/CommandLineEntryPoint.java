@@ -13,7 +13,7 @@ public class CommandLineEntryPoint implements UserRequestProvider<String[]>{
 			System.out.println("Ex: CommandLineEntryPoint inputfilename.txt outputfile.txt");
 			System.exit(0);
 		}
-		if (args.length != 2 || args.isEmpty()) {
+		if (args.length != 2) {
 			System.err.println("Incorrect number of command line arguments, see --help");
 			System.exit(1);
 		}
