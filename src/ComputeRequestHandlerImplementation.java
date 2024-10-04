@@ -22,9 +22,6 @@ public class ComputeRequestHandlerImplementation implements ComputeRequestHandle
 		if(userRequest == null) {
 			throw new IllegalArgumentException("UserRequest cannot be null");
 		}
-		if(dataStoreAPI == null) {
-			throw new IllegalArgumentException("DataStoreAPI cannot be null");
-		}
 		this.dataStoreAPI = dataStoreAPI;
 		this.userRequest = userRequest;
 	}
