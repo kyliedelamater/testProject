@@ -62,7 +62,7 @@ public class DataStoreAPI {
 		this.inputList = inputList;
 	}
 
-	public void setOutputList(List<String outputList){
+	public void setOutputList(List<String> outputList){
 		this.outputList = outputList;
 	}
 
