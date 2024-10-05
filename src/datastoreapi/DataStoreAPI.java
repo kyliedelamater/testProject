@@ -62,13 +62,6 @@ public class DataStoreAPI {
 		this.inputList = inputList;
 	}
 
-	public void setOutputList(List<String> outputList) {
-		if(outputList == null) {
-			throw new IllegalArgumentException("Output list cannot be null");
-		}
-		this.outputList = outputList;
-	}
-
 	// addInput method
 	public List<Integer> addInput(int a) {
 		if(a < 0) {
