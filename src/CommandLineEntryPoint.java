@@ -33,7 +33,7 @@ public class CommandLineEntryPoint implements UserRequestProvider<String[]>{
 	@Override
 	public void propigateResponse(EngineResponse response) {
 		if(response == null) {
-			throw new IllegalArgumentException("Response cannot be null");
+			System.err.println(Error: Engine responded with null);
 		}
 		if (response.getResponseCode().isFailure()){
 			System.out.println("Failed :^(");
