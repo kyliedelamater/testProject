@@ -11,32 +11,32 @@ public class RequestResultImplementation implements RequestResult {
   }
 
   public RequestResultImplementation(ArrayList<Integer> result) {
-		if(result == null) {
-			throw new IllegalArgumentException("Result list cannot be null");
-		}
-    this.result = new NumStreamImplementation(result);
+	if(result == null) {
+		throw new IllegalArgumentException("Result list cannot be null");
+	}
+    	this.result = new NumStreamImplementation(result);
   }
 
   public NumStream getResultNumStream() {
-    return result;
+    	return result;
   }
 
   @Override
   public String getResultString() {
-    return resultString;
+    	return resultString;
   }
 
   public void setResultNumStream(NumStream resultNumStream) {
-		if(resultNumStream == null) {
-			throw new IllegalArgumentException("NumStream cannot be null");
-		}
-    this.result = result;
+	if(resultNumStream == null) {
+		throw new IllegalArgumentException("NumStream cannot be null");
+	}
+   	this.result = result;
   }
 
   public void setResultString(String resultString) {
-		if(resultString == null) {
-			throw new IllegalArgumentException("Result cannot be null");
-		}
-    this.resultString = resultString;
+	if(resultString == null) {
+		throw new IllegalArgumentException("Result cannot be null");
+	}
+    	this.resultString = resultString;
   }
 }
