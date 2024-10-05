@@ -36,9 +36,9 @@ public class CommandLineEntryPoint implements UserRequestProvider<String[]>{
 			throw new IllegalArgumentException("Response cannot be null");
 		}
 		if (response.getResponseCode().isFailure()){
-			System.out.println("Successful! Output written at: " + args[1]);
-		} else {
 			System.out.println("Failed :^(");
+		} else {
+			System.out.println("Successful! Output written at: " + args[1]);
 		}
 	}
 }
