@@ -62,6 +62,10 @@ public class DataStoreAPI {
 		this.inputList = inputList;
 	}
 
+	public void setOutputList(List<String outputList){
+		this.outputList = outputList;
+	}
+
 	// addInput method
 	public List<Integer> addInput(int a) {
 		if(a < 0) {
