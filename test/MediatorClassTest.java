@@ -45,12 +45,13 @@ public class MediatorClassTest {
 	}
 
 	@Test
-	public void testMediatorErrorIntegration () {
+	public void testMediatorErrorIntegration() {
 		ComputeEngineComputation computeEngineComputation = new ComputationImplementation();
 		ComputeEngine computeEngine = new ComputeEngineImplementation(computeEngineComputation);
 
 		EngineResponse engineResponse = computeEngine.submitRequest(null);
 
 		assertTrue(engineResponse.getResponseCode().isFailure());
+		assertTrue(engineResponse instanceof EngineResponseException);
 	}
 }
