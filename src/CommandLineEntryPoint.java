@@ -32,6 +32,9 @@ public class CommandLineEntryPoint implements UserRequestProvider<String[]>{
 
 	@Override
 	public void propigateResponse(EngineResponse response) {
+		if(response == null) {
+			System.err.println("Error: Engine responded with null");
+		}
 		if (response.getResponseCode().isFailure()){
 			System.out.println("Failed :^(");
 		} else {

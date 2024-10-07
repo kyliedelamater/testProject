@@ -10,14 +10,20 @@ public class NumStreamImplementation implements NumStream {
   }
 
   public NumStreamImplementation(List<Integer> integerList) {
-    this.integerList = integerList;
+  	if(integerList == null) {
+		throw new IllegalArgumentException("Integer list cannot be null");
+	}
+   	this.integerList = integerList;
   }
 
   public List<Integer> getIntegers() {
-    return integerList;
+    	return integerList;
   }
 
   public void setIntegerList(List<Integer> integerList) {
-    this.integerList =  integerList;
+	if(integerList == null) {
+		throw new IllegalArgumentException("Integer list cannot be null");
+	}
+    	this.integerList =  integerList;
   }
 }

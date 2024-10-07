@@ -22,18 +22,26 @@ public class DataStoreAPI {
 	InputResponse inputResponse;
 
 	public DataStoreAPI() {
-		return;
 	}
 
 	public DataStoreAPI(OutputResponse outputResponse) {
+		if(outputResponse == null) {
+			throw new IllegalArgumentException("OutputResponse cannot be null");
+		}
 		this.outputResponse = outputResponse;
 	}
 
 	public DataStoreAPI(InputResponse inputResponse) {
+		if(inputResponse == null) {
+			throw new IllegalArgumentException("InputResponse cannot be null");
+		}
 		this.inputResponse = inputResponse;
 	}
 
 	public DataStoreAPI(ComputeEngineAPI computeEngine) {
+		if(computeEngine == null) {
+			throw new IllegalArgumentException("ComputeEngineAPI cannot be null");
+		}
 		this.computeEngineAPI = computeEngine;
 	}
 
@@ -48,20 +56,29 @@ public class DataStoreAPI {
 
 	// setters
 	public void setInputList(List<Integer> inputList) {
+		if(inputList == null || inputList.isEmpty()) {
+			throw new IllegalArgumentException("Input list cannot be null or empty");
+		}
 		this.inputList = inputList;
 	}
 
-	public void setOutputList(List<String> outputList) {
+	public void setOutputList(List<String> outputList){
 		this.outputList = outputList;
 	}
 
 	// addInput method
 	public List<Integer> addInput(int a) {
+		if(a < 0) {
+			throw new IllegalArgumentException("Input cannot be negative");
+		}
 		return inputList;
 	}
 
 	// input response method
 	public List<Integer> readInput(InputRequest inputRequest) {
+		if(inputRequest == null) {
+			throw new IllegalArgumentException("InputRequest cannot be null");
+		}
 		try {
 			FileReader f = new FileReader(inputRequest.getFile()); 
 			Scanner in = new Scanner(f);
@@ -78,6 +95,9 @@ public class DataStoreAPI {
 
 	// output response method
 	public List<String> writeOutput(OutputRequest outputRequest) {
+		if(outputRequest == null) {
+			throw new IllegalArgumentException("OutputRequest cannot be null");
+		}
 		try {
 			FileWriter f = new FileWriter(outputRequest.getFile());
 			for (String output : outputList) {
