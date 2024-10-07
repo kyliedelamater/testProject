@@ -35,10 +35,15 @@ public class CommandLineEntryPoint implements UserRequestProvider<String[]>{
 		if(response == null) {
 			System.err.println("Error: Engine responded with null");
 		}
+		if (response instanceof EngineResponseException engineResponseException) {
+			Exception e = engineResponseException.getException();
+			System.err.println("Error: encountered exception " + e + ", ignoring...");
+		}
 		if (response.getResponseCode().isFailure()){
 			System.out.println("Failed :^(");
 		} else {
 			System.out.println("Successful! Output written at: " + args[1]);
 		}
+		System.exit(0);
 	}
 }
