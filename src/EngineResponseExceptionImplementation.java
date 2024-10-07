@@ -5,7 +5,7 @@ public class EngineResponseExceptionImplementation implements EngineResponseExce
 	private ResponseCode responseCode = ResponseCode.FAILED;
 	private RequestResult requestResult;
 
-	public EngineResponseExceptionImplementation (Exception exception) { 
+	public EngineResponseExceptionImplementation(Exception exception) { 
 		this.exception = exception;
 	}
 
