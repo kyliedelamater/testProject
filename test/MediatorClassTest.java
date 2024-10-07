@@ -1,6 +1,6 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 
 import interfaces.NumStream;
 
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 public class MediatorClassTest {
@@ -43,5 +42,15 @@ public class MediatorClassTest {
 		IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class,  () -> Mediator.setMediator(null));
 
 		assertEquals("Mediator cannot be null", illegalArgumentException.getMessage());
+	}
+
+	@Test
+	public void testMediatorErrorIntegration () {
+		ComputeEngineComputation computeEngineComputation = new ComputationImplementation();
+		ComputeEngine computeEngine = new ComputeEngineImplementation(computeEngineComputation);
+
+		EngineResponse engineResponse = computeEngine.submitRequest(null);
+
+		assertTrue(engineResponse.getResponseCode().isFailure());
 	}
 }
