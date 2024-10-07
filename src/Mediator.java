@@ -43,7 +43,7 @@ public class Mediator {
 		try {
 			provider.propigateResponse(sendInputHelper(provider));
 		} catch (Exception e) {
-			provider.propigateResponse(new EngineResponseException(e));
+			provider.propigateResponse(new EngineResponseExceptionImplementation(e));
 		}
 
 	}

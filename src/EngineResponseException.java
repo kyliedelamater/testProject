@@ -1,15 +1,8 @@
 
-public class EngineResponseException extends ConcreteEngineResponse{
+public interface EngineResponseException extends EngineResponse{
 
-	private Exception exception;
-
-	public EngineResponseException(Exception exception) {
-		super(ResponseCode.FAILED);
-		this.exception = exception;
-	}
+	public Exception getException();
 	
-	public Exception getException() {
-		return this.exception;
-	}
+	public void setException(Exception exception);
 
 }
