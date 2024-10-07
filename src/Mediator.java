@@ -40,6 +40,15 @@ public class Mediator {
 		if(provider == null) {
 			throw new IllegalArgumentException("UserRequestProvider cannot be null");
 		}
+		try {
+			provider.propigateResponse(sendInputHelper(provider));
+		} catch (Exception e) {
+			provider.propigateResponse(new EngineResponseException(e));
+		}
+
+	}
+	
+	private <T> EngineResponse sendInputHelper(UserRequestProvider<T> provider) throws Exception {
 		UserRequest userRequest = provider.generateRequest(provider.getInput());
 
 		EngineResponse response = new ConcreteEngineResponse(ResponseCode.FAILED);
@@ -66,7 +75,7 @@ public class Mediator {
 			}
 		}
 
-		provider.propigateResponse(response);
+		return response;
 	}
 
 	private Optional<InputRequest> generateInputRequest(UserRequest request) {
