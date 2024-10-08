@@ -25,17 +25,25 @@ public class ComputeEngineImplementation implements ComputeEngine {
 
   @Override
   public EngineResponse submitRequest(UserRequest userRequest) {
+	try {
+		return submitRequestHelper(userRequest);
+	} catch (Exception e) {
+		return new EngineResponseExceptionImplementation(e);
+	}
+  }
+  
+  public EngineResponse submitRequestHelper(UserRequest userRequest) throws Exception {
 	if(userRequest == null) {
 		throw new IllegalArgumentException("UserRequest cannot be null");
 	}
-    EngineResponse engineResponse = sendStreamForFactorial(userRequest.getRequestStream());
-    NumStream resultStream = engineResponse.getRequestResult().getResultNumStream();
+	EngineResponse engineResponse = sendStreamForFactorial(userRequest.getRequestStream());
+	NumStream resultStream = engineResponse.getRequestResult().getResultNumStream();
 
-    RequestResult requestResult = engineResponse.getRequestResult();
+	RequestResult requestResult = engineResponse.getRequestResult();
 
-    requestResult.setResultString(processResultString(userRequest, (ArrayList<Integer>) resultStream.getIntegers()));
+	requestResult.setResultString(processResultString(userRequest, (ArrayList<Integer>) resultStream.getIntegers()));
 
-    return engineResponse;
+	return engineResponse;
   }
 
   @Override
