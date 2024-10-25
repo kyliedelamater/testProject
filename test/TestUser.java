@@ -1,7 +1,4 @@
-package edu.softwareeng.sample;
-
 import java.io.File;
-
 
 public class TestUser {
 	
@@ -20,7 +17,7 @@ public class TestUser {
 		// TODO 4: Call the appropriate method(s) on the coordinator to get it to 
 		// run the compute job specified by inputPath, outputPath, and delimiter
 		UserRequestSource userRequestSource = new UserRequestSource(inputPath);
-		UserRequestDestination userRequestDestination = new UserRequestDestinatin(outputPath);
+		UserRequestDestination userRequestDestination = new UserRequestDestination(outputPath);
 		UserRequest userRequest = new UserRequest(userRequestSource, userRequestDestination, delimiter);
 		coordinator.sendRequest(userRequest);
 	}
