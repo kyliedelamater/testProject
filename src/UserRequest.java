@@ -23,13 +23,7 @@ public class UserRequest {
 		this.userRequestSource = userRequestSource;
 	}
 	
-	public UserRequest(UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, char resultDelimiter){
-		if(userRequestSource == null) {
-			throw new IllegalArgumentException("UserRequestSource cannot be null");
-		}
-		if(userRequestDestination == null) {
-			throw new IllegalArgumentException("UserRequestDestination cannot be null");
-		}
+	public UserRequest(UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, char resultDelimiter) {
 		this.userRequestSource = userRequestSource;
 		this.userRequestDestination = userRequestDestination;
 		this.resultDelimiter = resultDelimiter;
