@@ -6,6 +6,9 @@ public class UserIOApi {
 		this.computeEngineApi = computeEngineApi;
 	}
 
+	public UserIOApi(){
+	}
+
 	public ComputeEngineApi getComputeEngineApi() {
 		return computeEngineApi;
 	}
