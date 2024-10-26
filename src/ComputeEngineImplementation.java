@@ -1,10 +1,20 @@
+import datastoreapi.DataStoreAPI;
+import datastoreapi.OutputRequest;
 import interfaces.NumStream;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ComputeEngineImplementation implements ComputeEngine {
+  DataStoreAPI dataStoreAPI;
   ComputeEngineComputation computeEngineComputation;
   ComputeRequestHandler computeRequestHandler;
+
+  public ComputeEngineImplementation(ComputeEngineComputation computeEngineComputation, ComputeRequestHandler computeRequestHandler, DataStoreAPI dataStoreAPI) {
+    this.computeEngineComputation = computeEngineComputation;
+    this.computeRequestHandler = computeRequestHandler;
+    this.dataStoreAPI = dataStoreAPI;
+  }
 
   public ComputeEngineImplementation(ComputeEngineComputation computeEngineComputation, ComputeRequestHandler computeRequestHandler) {
     this.computeEngineComputation = computeEngineComputation;
@@ -25,14 +35,19 @@ public class ComputeEngineImplementation implements ComputeEngine {
 
   @Override
   public EngineResponse submitRequest(UserRequest userRequest) {
-	try {
-		return submitRequestHelper(userRequest);
-	} catch (Exception e) {
-		return new EngineResponseExceptionImplementation(e);
-	}
+    return submitRequest(userRequest, false);
+  }
+
+  @Override
+  public EngineResponse submitRequest(UserRequest userRequest, boolean internalRequest) {
+    try {
+      return submitRequestHelper(userRequest, internalRequest);
+    } catch (Exception e) {
+      return new EngineResponseExceptionImplementation(e);
+    }
   }
   
-  public EngineResponse submitRequestHelper(UserRequest userRequest) throws Exception {
+  public EngineResponse submitRequestHelper(UserRequest userRequest, boolean internalRequest) throws Exception {
 	if(userRequest == null) {
 		throw new IllegalArgumentException("UserRequest cannot be null");
 	}
@@ -42,6 +57,11 @@ public class ComputeEngineImplementation implements ComputeEngine {
 	RequestResult requestResult = engineResponse.getRequestResult();
 
 	requestResult.setResultString(processResultString(userRequest, (ArrayList<Integer>) resultStream.getIntegers()));
+
+  if (internalRequest) {
+    dataStoreAPI.setOutputList(new ArrayList<>(List.of(requestResult.getResultString())));
+    dataStoreAPI.writeOutput(new OutputRequest(userRequest.getUserRequestDestination().outputPath));
+  }
 
 	return engineResponse;
   }
