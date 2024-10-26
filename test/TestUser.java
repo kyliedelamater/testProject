@@ -1,4 +1,8 @@
+import interfaces.NumStream;
+
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestUser {
 	
@@ -18,8 +22,11 @@ public class TestUser {
 		// run the compute job specified by inputPath, outputPath, and delimiter
 		UserRequestSource userRequestSource = new UserRequestSource(inputPath);
 		UserRequestDestination userRequestDestination = new UserRequestDestination(outputPath);
-		UserRequest userRequest = new UserRequest(userRequestSource, userRequestDestination, delimiter);
-		coordinator.sendRequest(userRequest);
+		NumStream inputStream = new NumStreamImplementation();
+		inputStream.setIntegerList(new ArrayList<>(List.of(1,3)));
+
+		UserRequest userRequest = new UserRequest(userRequestSource, userRequestDestination, delimiter, inputStream);
+		coordinator.sendRequest(userRequest, true);
 	}
 
 }
