@@ -64,7 +64,7 @@ public class Mediator {
 
 		userRequest.setRequestStream(inputNumStream);
 
-		EngineResponse engineResponse = computeEngine.submitRequest(userRequest, false);
+		EngineResponse engineResponse = computeEngine.submitRequest(userRequest);
 		if (!engineResponse.getResponseCode().isFailure()) {
 			Optional<OutputRequest> outRequest = generateOutputRequest(userRequest);
 			if (outRequest.isPresent()) {
