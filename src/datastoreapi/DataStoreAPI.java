@@ -28,6 +28,7 @@ public class DataStoreAPI {
 		if(outputResponse == null) {
 			throw new IllegalArgumentException("OutputResponse cannot be null");
 		}
+
 		this.outputResponse = outputResponse;
 	}
 

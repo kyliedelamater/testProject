@@ -22,6 +22,13 @@ public class UserRequest {
 		this.userRequestDestination = userRequestDestination;
 		this.userRequestSource = userRequestSource;
 	}
+	
+	public UserRequest(UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, char resultDelimiter, NumStream requestStream) {
+		this.userRequestSource = userRequestSource;
+		this.userRequestDestination = userRequestDestination;
+		this.resultDelimiter = resultDelimiter;
+		this.requestStream = requestStream;
+	}
 
 	public UserRequest(UserRequestSource userRequestSource, UserRequestDestination userRequestDestination, NumStream requestStream) {
 		this(requestStream, userRequestSource, userRequestDestination, ';', ':');
