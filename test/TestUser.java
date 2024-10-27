@@ -21,7 +21,7 @@ public class TestUser {
 		// TODO 4: Call the appropriate method(s) on the coordinator to get it to 
 		// run the compute job specified by inputPath, outputPath, and delimiter
 		UserRequestSource userRequestSource = new FileUserRequestSource(inputPath);
-		UserRequestDestination userRequestDestination = new UserRequestDestination(outputPath);
+		UserRequestDestination userRequestDestination = new FileUserRequestDestination(outputPath);
 		NumStream inputStream = new NumStreamImplementation();
 		inputStream.setIntegerList(new ArrayList<>(List.of(1,3)));
 
