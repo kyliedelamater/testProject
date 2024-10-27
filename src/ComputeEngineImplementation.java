@@ -60,7 +60,10 @@ public class ComputeEngineImplementation implements ComputeEngine {
 
   if (internalRequest) {
     dataStoreAPI.setOutputList(new ArrayList<>(List.of(requestResult.getResultString())));
-    dataStoreAPI.writeOutput(new OutputRequest(userRequest.getUserRequestDestination().outputPath));
+    UserRequestDestination requestDestination = userRequest.getUserRequestDestination();
+    if (requestDestination instanceof FileUserRequestDestination fileRequestDestination){
+        dataStoreAPI.writeOutput(new OutputRequest(fileRequestDestination.getFileName()));
+    }
   }
 
 	return engineResponse;
