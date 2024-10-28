@@ -12,7 +12,7 @@ public class MultiThreadedUserIOApi extends UserIOApi{
 
     public Future<EngineResponse> submitRequest(UserRequest request) {
         return executorService.submit(() -> {
-            return sendRequest(request);
+            return super.sendRequest(request);
         });
     }
 
