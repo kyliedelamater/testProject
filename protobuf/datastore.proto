@@ -1,17 +1,17 @@
 package datastore;
 
 message InputRequest{
-	optional int32 indexOfInput = 1;
+	optional string fileName = 1;
 }
 
 message InputResponse{
-	optional bool inputFound = 1;
-	optional int32 inputValue = 2;
+	repeated int32 inputList = 1;
 
 }
 
 message OutputRequest{
-	optional string outputValue = 1;
+	optional string fileName = 1;
+	repeated int32 outputList = 2;
 }
 
 message OutputResponse{
