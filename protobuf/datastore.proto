@@ -1,0 +1,24 @@
+package datastore;
+
+message InputRequest{
+	optional int32 indexOfInput = 1;
+}
+
+message InputResponse{
+	optional bool inputFound = 1;
+	optional int32 inputValue = 2;
+
+}
+
+message OutputRequest{
+	optional string outputValue = 1;
+}
+
+message OutputResponse{
+	optional bool outputWritten = 1;
+}
+
+service DataStoreSystem{
+	rpc  ReadInput(InputRequest) returns (InputResponse);
+	rpc  WriteOutput(OutputRequest) returns (OutputResponse);
+}
