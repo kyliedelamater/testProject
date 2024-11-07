@@ -10,7 +10,7 @@ public class ComputeServer {
   private Server server;
 
   void start() throws IOException {
-    int port = 8010;
+    final int port = 8010;
 
     server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
             //.addService(new -)
