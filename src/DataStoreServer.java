@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import datastore.DataStoreServerImpl;
 
 import io.grpc.Grpc;
 import io.grpc.InsecureServerCredentials;
@@ -14,7 +15,7 @@ public class DataStoreServer {
       int port = 27027; // Boilerplate TODO: Consider changing the port (only one server per port)
       
       server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
-          //.addService(new DataStoreServerImpl())
+          .addService(new DataStoreServerImpl())
           .addService(ProtoReflectionService.newInstance())
           .build()
           .start();
